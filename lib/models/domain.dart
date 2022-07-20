@@ -9,8 +9,4 @@ class Domain {
   String convertNameToHumanReadableFormat() {
     return name.replaceAll("-", " ");
   }
-
-  void hello() {
-    print("hello World");
-  }
 }
