@@ -24,10 +24,15 @@ class DomainListScreen extends StatelessWidget {
             }
             else {
               if (snapshot.hasError){
+                // If an error has occurred (e.g if the user has an internet error,
+                // Tell them that an error has occurred
                 return const Center(
                   child: Text("An error has occurred, please try again later"),
                 );
               } else {
+                // When we get data from the internet, convert it to a usable
+                //format and display it in a list to the user
+
                 //Convert internet response to a list
                 List responseData = jsonDecode(snapshot.data!.body);
 
