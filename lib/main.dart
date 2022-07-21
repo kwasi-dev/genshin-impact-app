@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:genshinapp/screens/dashboard_screen.dart';
 import 'package:genshinapp/screens/domain_list.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DomainListScreen(),
+      home: DashboardScreen(),
     );
   }
 }

@@ -11,5 +11,14 @@ class Api{
     Response request = await client.get(Uri.https(host, domainListUrl));
     return request;
   }
+
+  Future<Response> getArtifactList() async{
+    String artifactListUrl = "artifacts";
+
+    Response request = await client.get(Uri.https(host, artifactListUrl));
+    return request;
+  }
+
+
 }
 
