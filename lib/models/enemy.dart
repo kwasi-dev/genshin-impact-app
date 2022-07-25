@@ -1,7 +1,7 @@
-class Artifact{
+class Enemy{
   String name;
 
-  Artifact(this.name);
+  Enemy(this.name);
 
   //The name that is retrieved from the internet has dashes in it.
   // Replace all the dashes with spaces so that the user will see

@@ -1,21 +1,18 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/domain.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
+import '../models/nation.dart';
 
-import '../models/artifact.dart';
-
-class ArtifactListScreen extends StatelessWidget {
-  ArtifactListScreen({Key? key}) : super(key: key);
+class NationListScreen extends StatelessWidget {
+  NationListScreen({Key? key}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-          future: genshinApi.getArtifactList(),
+          future: genshinApi.getNationList(),
           builder: (BuildContext context, AsyncSnapshot<Response> snapshot){
             if(snapshot.connectionState == ConnectionState.waiting){
               // While we are loading data from the internet, show a loading
@@ -38,18 +35,18 @@ class ArtifactListScreen extends StatelessWidget {
                 //Convert internet response to a list
                 List responseData = jsonDecode(snapshot.data!.body);
 
-                //Convert list of data to artifacts
-                List<Artifact> artifactList = responseData.map((e) => Artifact(e)).toList();
+                //Convert list of data to nations
+                List<Nation> nationList = responseData.map((e) => Nation(e)).toList();
 
                 return ListView.builder(
-                  itemCount: artifactList.length,
+                  itemCount: nationList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    // Get the current domain
-                    Artifact currentDomain = artifactList[index];
+                    // Get the current Nation
+                    Nation currentNation= nationList[index];
 
-                    // SHow the domain information in a list tile
+                    // SHow the Nation information in a list tile
                     return ListTile(
-                      title: Text(currentDomain.convertNameToHumanReadableFormat()),
+                      title: Text(currentNation.convertNameToHumanReadableFormat()),
                     );
                   },
                 );
