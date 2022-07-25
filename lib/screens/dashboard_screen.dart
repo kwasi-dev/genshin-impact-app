@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:genshinapp/screens/artifact_list.dart';
 import 'package:genshinapp/screens/boss_list.dart';
+import 'package:genshinapp/screens/consumablegen_list.dart';
 import 'package:genshinapp/screens/domain_list.dart';
 import 'package:genshinapp/screens/charactersgen_list.dart';
+import 'package:genshinapp/screens/elementgen_list.dart';
 import 'package:genshinapp/screens/enemy_list.dart';
 import 'package:genshinapp/screens/materialgen_list.dart';
 import 'package:genshinapp/screens/nation_list.dart';
@@ -56,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Consumables"),
                     onTap: () {
-                      updateContent(ConsumablesListScreen());
+                      updateContent(ConsumablegenListScreen());
                     },
                   ),
                   ListTile(
@@ -68,7 +70,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Elements"),
                     onTap: () {
-                      updateContent(ElementsListScreen());
+                      updateContent(ElementgenListScreen());
                     },
                   ),
                   ListTile(

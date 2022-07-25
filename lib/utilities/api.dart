@@ -33,14 +33,14 @@ class Api {
     return request;
   }
 
-  Future<Response> getConsumableList() async{
+  Future<Response> getConsumablegenList() async{
     String consumableListUrl = "consumables";
 
     Response request = await client.get(Uri.https(host, consumableListUrl));
     return request;
   }
 
-  Future<Response> getElementList() async{
+  Future<Response> getElementgenList() async{
     String elementListUrl = "elements";
 
     Response request = await client.get(Uri.https(host, elementListUrl));
