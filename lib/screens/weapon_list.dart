@@ -41,12 +41,12 @@ class WeaponListScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: weaponList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    // Get the current domain
-                    Weapon currentDomain = weaponList[index];
+                    // Get the current Weapon
+                    Weapon currentWeapon= weaponList[index];
 
-                    // SHow the domain information in a list tile
+                    // SHow the Weapon information in a list tile
                     return ListTile(
-                      title: Text(currentDomain.convertNameToHumanReadableFormat()),
+                      title: Text(currentWeapon.convertNameToHumanReadableFormat()),
                     );
                   },
                 );
