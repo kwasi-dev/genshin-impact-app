@@ -12,48 +12,51 @@ class NationListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-          future: genshinApi.getNationList(),
-          builder: (BuildContext context, AsyncSnapshot<Response> snapshot){
-            if(snapshot.connectionState == ConnectionState.waiting){
-              // While we are loading data from the internet, show a loading
-              // icon
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            else {
-              if (snapshot.hasError){
-                // If an error has occurred (e.g if the user has an internet error,
-                // Tell them that an error has occurred
-                return const Center(
-                  child: Text("An error has occurred, please try again later"),
+      future: genshinApi.getNationList(),
+      builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+        if (snapshot.connectionState == ConnectionState.none) {
+          return const Center(
+              child:
+                  Text("You have lost internet connection. Please try again!"));
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          // While we are loading data from the internet, show a loading
+          // icon
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          if (snapshot.hasError) {
+            // If an error has occurred (e.g if the user has an internet error,
+            // Tell them that an error has occurred
+            return const Center(
+              child: Text("An error has occurred, please try again later"),
+            );
+          } else {
+            // When we get data from the internet, convert it to a usable
+            //format and display it in a list to the user
+
+            //Convert internet response to a list
+            List responseData = jsonDecode(snapshot.data!.body);
+
+            //Convert list of data to nations
+            List<Nation> nationList =
+                responseData.map((e) => Nation(e)).toList();
+
+            return ListView.builder(
+              itemCount: nationList.length,
+              itemBuilder: (BuildContext context, int index) {
+                // Get the current Nation
+                Nation currentNation = nationList[index];
+
+                // SHow the Nation information in a list tile
+                return ListTile(
+                  title: Text(currentNation.convertNameToHumanReadableFormat()),
                 );
-              } else {
-                // When we get data from the internet, convert it to a usable
-                //format and display it in a list to the user
-
-                //Convert internet response to a list
-                List responseData = jsonDecode(snapshot.data!.body);
-
-                //Convert list of data to nations
-                List<Nation> nationList = responseData.map((e) => Nation(e)).toList();
-
-                return ListView.builder(
-                  itemCount: nationList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    // Get the current Nation
-                    Nation currentNation= nationList[index];
-
-                    // SHow the Nation information in a list tile
-                    return ListTile(
-                      title: Text(currentNation.convertNameToHumanReadableFormat()),
-                    );
-                  },
-                );
-              }
-            }
-          },
-        )
-    );
+              },
+            );
+          }
+        }
+      },
+    ));
   }
 }

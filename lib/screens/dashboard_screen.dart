@@ -36,6 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             SizedBox(
               width: 200,
               child: ListView(
+                primary: false,
                 children: [
                   ListTile(
                     title: const Text("Artifacts"),
