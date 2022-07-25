@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:genshinapp/models/domain.dart';
+import 'package:genshinapp/screens/artifact_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
 import '../models/artifact.dart';
 
 class ArtifactListScreen extends StatelessWidget {
-  ArtifactListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  ArtifactListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -53,6 +56,14 @@ class ArtifactListScreen extends StatelessWidget {
 
                 // SHow the domain information in a list tile
                 return ListTile(
+                  onTap: (){
+                    // Artifact detail screen should take the selected artifact
+                    // as a parameter so that it knows what artifact it should
+                    // display
+                    onItemClick(ArtifactDetailScreen(
+                      artifact: currentDomain
+                    ));
+                  },
                   title: Text(currentDomain.convertNameToHumanReadableFormat()),
                 );
               },

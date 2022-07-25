@@ -41,7 +41,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Artifacts"),
                     onTap: () {
-                      updateContent(ArtifactListScreen());
+                      updateContent(ArtifactListScreen(
+                        onItemClick: updateContent
+                      ));
                     },
                   ),
                   ListTile(
