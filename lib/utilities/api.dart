@@ -19,6 +19,62 @@ class Api{
     return request;
   }
 
+  Future<Response> getBossList() async{
+    String bossListUrl = "boss";
+
+    Response request = await client.get(Uri.https(host, bossListUrl));
+    return request;
+  }
+
+  Future<Response> getCharacterList() async{
+    String characterListUrl = "characters";
+
+    Response request = await client.get(Uri.https(host, characterListUrl));
+    return request;
+  }
+
+  Future<Response> getConsumableList() async{
+    String consumableListUrl = "consumables";
+
+    Response request = await client.get(Uri.https(host, consumableListUrl));
+    return request;
+  }
+
+  Future<Response> getElementList() async{
+    String elementListUrl = "elements";
+
+    Response request = await client.get(Uri.https(host, elementListUrl));
+    return request;
+  }
+
+  Future<Response> getEnemyList() async{
+    String enemyListUrl = "enemies";
+
+    Response request = await client.get(Uri.https(host, enemyListUrl));
+    return request;
+  }
+
+  Future<Response> getMaterialList() async{
+    String materialListUrl = "materials";
+
+    Response request = await client.get(Uri.https(host, materialListUrl));
+    return request;
+  }
+
+  Future<Response> getNationList() async{
+    String nationListUrl = "nations";
+
+    Response request = await client.get(Uri.https(host, nationListUrl));
+    return request;
+  }
+
+  Future<Response> getWeaponList() async{
+    String weaponListUrl = "weapons";
+
+    Response request = await client.get(Uri.https(host, weaponListUrl));
+    return request;
+  }
+
 
 }
 
