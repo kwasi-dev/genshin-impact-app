@@ -26,7 +26,7 @@ class Api {
     return request;
   }
 
-  Future<Response> getCharacterList() async{
+  Future<Response> getCharactergenList() async{
     String characterListUrl = "characters";
 
     Response request = await client.get(Uri.https(host, characterListUrl));
@@ -74,4 +74,6 @@ class Api {
     Response request = await client.get(Uri.https(host, weaponListUrl));
     return request;
   }
+
+  getCharactersgenList() {}
 }

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:genshinapp/screens/artifact_list.dart';
 import 'package:genshinapp/screens/domain_list.dart';
-import 'package:genshinapp/screens/characters_list.dart';
+import 'package:genshinapp/screens/charactersgen_list.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: Text("Characters"),
                     onTap: () {
-                      updateContent(CharactersListScreen());
+                      updateContent(CharctersgenListScreen());
                     },
                   ),
                   ListTile(

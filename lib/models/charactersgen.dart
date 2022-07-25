@@ -1,7 +1,7 @@
-class Characters {
+class Charactersgen {
   String name;
 
-  Characters(this.name);
+  Charactersgen(this.name);
 
   //The name that is retrieved from the internet has dashes in it.
   // Replace all the dashes with spaces so that the user will see
