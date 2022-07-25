@@ -19,7 +19,6 @@ class Api {
     return request;
   }
 
-<<<<<<< HEAD
   Future<Response> getBossList() async{
     String bossListUrl = "boss";
 
@@ -55,10 +54,10 @@ class Api {
     return request;
   }
 
-  Future<Response> getMaterialList() async{
-    String materialListUrl = "materials";
+  Future<Response> getMaterial_genList() async{
+    String material_genListUrl = "materials";
 
-    Response request = await client.get(Uri.https(host, materialListUrl));
+    Response request = await client.get(Uri.https(host, material_genListUrl));
     return request;
   }
 
@@ -73,64 +72,6 @@ class Api {
     String weaponListUrl = "weapons";
 
     Response request = await client.get(Uri.https(host, weaponListUrl));
-    return request;
-  }
-
-=======
-  Future<Response> getBossList() async {
-    String bossListUrl = "boss";
->>>>>>> 03c5f512f4be1dfbccbd9239e03748602b60dc43
-
-    Response request = await client.get(Uri.https(host, bossListUrl));
-    return request;
-  }
-
-  Future<Response> getCharactersList() async {
-    String charactersListUrl = "characters";
-
-    Response request = await client.get(Uri.https(host, charactersListUrl));
-    return request;
-  }
-
-  Future<Response> getConsumablesList() async {
-    String consumablesListUrl = "consumables";
-
-    Response request = await client.get(Uri.https(host, consumablesListUrl));
-    return request;
-  }
-
-  Future<Response> getElementsList() async {
-    String elementsListUrl = "elements";
-
-    Response request = await client.get(Uri.https(host, elementsListUrl));
-    return request;
-  }
-
-  Future<Response> getEnemiesList() async {
-    String enemiesListUrl = "enemies";
-
-    Response request = await client.get(Uri.https(host, enemiesListUrl));
-    return request;
-  }
-
-  Future<Response> getMaterialsList() async {
-    String materialsListUrl = "materials";
-
-    Response request = await client.get(Uri.https(host, materialsListUrl));
-    return request;
-  }
-
-  Future<Response> getNationsList() async {
-    String nationsListUrl = "nations";
-
-    Response request = await client.get(Uri.https(host, nationsListUrl));
-    return request;
-  }
-
-  Future<Response> getWeaponsList() async {
-    String weaponsListUrl = "weapons";
-
-    Response request = await client.get(Uri.https(host, weaponsListUrl));
     return request;
   }
 }
