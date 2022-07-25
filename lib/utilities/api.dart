@@ -54,10 +54,10 @@ class Api {
     return request;
   }
 
-  Future<Response> getMaterial_genList() async{
-    String material_genListUrl = "materials";
+  Future<Response> getMaterialgenList() async{
+    String materialgenListUrl = "materials";
 
-    Response request = await client.get(Uri.https(host, material_genListUrl));
+    Response request = await client.get(Uri.https(host, materialgenListUrl));
     return request;
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:genshinapp/screens/artifact_list.dart';
 import 'package:genshinapp/screens/domain_list.dart';
 import 'package:genshinapp/screens/charactersgen_list.dart';
+import 'package:genshinapp/screens/weapon_list.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   Widget content = Container(
-    child: Text("The content we select from the menu will go here"),
+    child: const Text("The content we select from the menu will go here"),
   );
 
   @override
@@ -31,63 +32,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: ListView(
                 children: [
                   ListTile(
-                    title: Text("Artifacts"),
+                    title: const Text("Artifacts"),
                     onTap: () {
                       updateContent(ArtifactListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Boss"),
+                    title: const Text("Boss"),
                     onTap: () {
                       updateContent(BossListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Characters"),
+                    title: const Text("Characters"),
                     onTap: () {
                       updateContent(CharctersgenListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Consumables"),
+                    title: const Text("Consumables"),
                     onTap: () {
                       updateContent(ConsumablesListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Domains"),
+                    title: const Text("Domains"),
                     onTap: () {
                       updateContent(DomainListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Elements"),
+                    title: const Text("Elements"),
                     onTap: () {
                       updateContent(ElementsListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Enemies"),
+                    title: const Text("Enemies"),
                     onTap: () {
                       updateContent(EnemiesListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Materials"),
+                    title: const Text("Materials"),
                     onTap: () {
-                      updateContent(MaterialsListScreen());
+                      updateContent(MaterialsgenListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Nations"),
+                    title: const Text("Nations"),
                     onTap: () {
-                      updateContent(NationsListScreen());
+                      updateContent(NatioListScreen());
                     },
                   ),
                   ListTile(
-                    title: Text("Weapons"),
+                    title: const Text("Weapons"),
                     onTap: () {
-                      updateContent(WeaponsListScreen());
+                      updateContent(WeaponListScreen());
                     },
                   )
                 ],
