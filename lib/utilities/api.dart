@@ -75,5 +75,11 @@ class Api {
     return request;
   }
 
-  getCharactersgenList() {}
+  Future<Response> getArtifactDetail(String artifactName)async{
+    String artifactDetailUrl = "artifacts/$artifactName";
+
+    Response request = await client.get(Uri.https(host, artifactDetailUrl));
+    return request;
+
+  }
 }
