@@ -1,5 +1,9 @@
 class Artifact{
   String name;
+  int maxRarity = 0;
+  String onePcBonus = "";
+  String twoPcBonus = "";
+  String fourPcBonus = "";
 
   Artifact(this.name);
 
