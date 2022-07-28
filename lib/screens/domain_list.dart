@@ -2,11 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:genshinapp/models/domain.dart';
+import 'package:genshinapp/screens/domain_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
 class DomainListScreen extends StatelessWidget {
-  DomainListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  DomainListScreen({Key? key, required this.onItemClick}) : super(key: key);
+
   final Api genshinApi = Api();
 
   @override
@@ -51,6 +55,14 @@ class DomainListScreen extends StatelessWidget {
 
                 // SHow the domain information in a list tile
                 return ListTile(
+                  onTap: (){
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(DomainDetailScreen(
+                      domain: currentDomain
+                    ));
+                  },
                   title: Text(currentDomain.convertNameToHumanReadableFormat()),
                 );
               },

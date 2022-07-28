@@ -82,4 +82,11 @@ class Api {
     return request;
 
   }
+  Future<Response> getDomainDetail(String domainName)async{
+    String domainDetailUrl = "domain/$domainName";
+
+    Response request = await client.get(Uri.https(host, domainDetailUrl));
+    return request;
+
+  }
 }
