@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:genshinapp/models/charactersgen.dart';
+import 'package:genshinapp/screens/charactersgen_details.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class CharctersgenListScreen extends StatelessWidget {
-  CharctersgenListScreen({Key? key}) : super(key: key);
+class CharactersgenListScreen extends StatelessWidget {
+  void Function(Widget w) onItemClick;
+
+  CharactersgenListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -50,9 +53,16 @@ class CharctersgenListScreen extends StatelessWidget {
                 Charactersgen currentCharactersgen = charactersgenList[index];
 
                 // SHow the domain information in a list tile
-                return ListTile(
-                  title: Text(
-                      currentCharactersgen.convertNameToHumanReadableFormat()),
+                 return ListTile(
+                  onTap: (){
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(CharactersgenDetailScreen(
+                      charactersgen: currentCharactersgen
+                    ));
+                  },
+                  title: Text(currentCharactersgen.convertNameToHumanReadableFormat()),
                 );
               },
             );
