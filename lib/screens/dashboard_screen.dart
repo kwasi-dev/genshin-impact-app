@@ -60,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Consumables"),
                     onTap: () {
-                      updateContent(ConsumablegenListScreen());
+                      updateContent(ConsumablegenListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(

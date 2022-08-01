@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:genshinapp/screens/consumable_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import '../models/consumablegen.dart';
 
 class ConsumablegenListScreen extends StatelessWidget {
-  ConsumablegenListScreen({Key? key}) : super(key: key);
+   void Function(Widget w) onItemClick;
+   
+   ConsumablegenListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -50,8 +53,14 @@ class ConsumablegenListScreen extends StatelessWidget {
 
                 // SHow the Consumablegen information in a list tile
                 return ListTile(
-                  title: Text(
-                      currentConsumablegen.convertNameToHumanReadableFormat()),
+                  onTap: (){
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(ConsumablegenDetailScreen(
+                      consumablegen: currentConsumablegen
+                    ));},
+                  title: Text(currentConsumablegen.convertNameToHumanReadableFormat()),
                 );
               },
             );
