@@ -89,4 +89,11 @@ class Api {
     return request;
 
   }
+  Future<Response> getCharactersgenDetail(String charactersgenName)async{
+    String charactersgenDetailUrl = "characters/$charactersgenName";
+
+    Response request = await client.get(Uri.https(host, charactersgenDetailUrl));
+    return request;
+
+  }
 }

@@ -59,7 +59,7 @@ class CharactersgenListScreen extends StatelessWidget {
                     // as a parameter so that it knows what domain it should
                     // display
                     onItemClick(CharactersgenDetailScreen(
-                      charactersgen: currentCharactersgen
+                      characters: currentCharactersgen
                     ));
                   },
                   title: Text(currentCharactersgen.convertNameToHumanReadableFormat()),

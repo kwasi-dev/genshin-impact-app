@@ -1,5 +1,13 @@
 class Charactersgen {
   String name;
+  String vision = "";
+  String weapon = "";
+  String nation = "";
+  String affiliation = "";
+  int rarity = 0;
+  String constellation = "";
+  String birthday = "";
+  String description = "";
 
   Charactersgen(this.name);
 
