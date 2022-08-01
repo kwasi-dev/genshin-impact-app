@@ -6,11 +6,12 @@ import 'dart:convert';
 
 class CharactersgenDetailScreen extends StatelessWidget {
   final Charactersgen characters;
-   final Api genshinApi = Api();
+  final Api genshinApi = Api();
 
-   CharactersgenDetailScreen({Key? key, required  this.characters}) : super(key: key);
+  CharactersgenDetailScreen({Key? key, required this.characters})
+      : super(key: key);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: genshinApi.getCharactersgenDetail(characters.name),
@@ -30,9 +31,10 @@ class CharactersgenDetailScreen extends StatelessWidget {
             );
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
+            // Map<String, dynamic> skillTalents = jsonDecode(responseData['skillTalents']);
 
             characters.vision = responseData['vision'];
-           
+
             characters.weapon = responseData['weapon'];
 
             characters.nation = responseData['nation'];
@@ -46,28 +48,52 @@ class CharactersgenDetailScreen extends StatelessWidget {
             characters.birthday = responseData['birthday'];
 
             characters.description = responseData['description'];
-            
-             return Column(
+
+            // characters.skillTalentsname = skillTalents['description'][1];
+
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Name of character: ${characters.name}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Vision: ${characters.vision}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Weapon: ${characters.weapon}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Nation: ${characters.nation}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Affiliation: ${characters.affiliation}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Max Rarity: ${characters.rarity}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Constellation: ${characters.constellation}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Birthday: ${characters.birthday}"),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text("Description: ${characters.description}"),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                // Text("skillDescription: ${characters.skillTalentsname}"),
               ],
             );
           }
