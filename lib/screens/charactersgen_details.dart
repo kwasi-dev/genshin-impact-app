@@ -111,8 +111,7 @@ class CharactersgenDetailScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text("Description: ${characters.description}"),
-                SizedBox(
-                  height: 200,
+                Expanded(
                   child: ListView.builder(
                       itemCount: characters.skillTalents.length,
 
