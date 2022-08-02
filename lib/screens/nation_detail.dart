@@ -1,21 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/consumablegen.dart';
+import 'package:genshinapp/models/nation.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class ConsumablegenListScreen extends StatelessWidget {
-  final Consumablegen consumablegen;
+class NationListScreen extends StatelessWidget {
+  final Nation nation;
   final Api genshinApi = Api();
 
-  ConsumablegenListScreen({Key? key, required this.consumablegen})
-      : super(key: key);
+  NationListScreen({Key? key, required this.nation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: genshinApi.getConsumablegenDetail(consumablegen.name),
+      future: genshinApi.getNationDetail(nation.name),
       builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
         if (snapshot.connectionState == ConnectionState.none) {
           return const Center(
@@ -33,19 +32,13 @@ class ConsumablegenListScreen extends StatelessWidget {
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
 
-            consumablegen.rarity = responseData['rarity'];
+            nation.name = responseData['name'];
 
-            consumablegen.name = responseData['name'];
+            nation.element = responseData['element'];
 
-            consumablegen.type = responseData['type'];
+            nation.archon = responseData['archon'];
 
-            consumablegen.effect = responseData['effect'];
-
-            consumablegen.description = responseData['description'];
-
-            consumablegen.proficiency = responseData['proficiency'];
-
-            consumablegen.recipe = responseData['recipe'];
+            nation.controllingEntity = responseData['controlling entity'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,31 +46,19 @@ class ConsumablegenListScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Name of Consumable: ${consumablegen.name}"),
+                Text("Name of Nation: ${nation.name}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Rarity: ${consumablegen.rarity}"),
+                Text("Element: ${nation.element}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Type: ${consumablegen.type}"),
+                Text("Archon: ${nation.archon}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Effect: ${consumablegen.effect}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Description: ${consumablegen.description}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Proficiency: ${consumablegen.proficiency}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Recipe: ${consumablegen.recipe}")
+                Text("Controlling Entity: ${nation.controllingEntity}"),
               ],
             );
           }

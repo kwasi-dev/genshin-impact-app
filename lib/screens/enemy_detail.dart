@@ -1,21 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/consumablegen.dart';
+import 'package:genshinapp/models/enemy.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class ConsumablegenListScreen extends StatelessWidget {
-  final Consumablegen consumablegen;
+class EnemyListScreen extends StatelessWidget {
+  final Enemy enemy;
   final Api genshinApi = Api();
 
-  ConsumablegenListScreen({Key? key, required this.consumablegen})
-      : super(key: key);
+  EnemyListScreen({Key? key, required this.enemy}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: genshinApi.getConsumablegenDetail(consumablegen.name),
+      future: genshinApi.getEnemyDetail(enemy.name),
       builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
         if (snapshot.connectionState == ConnectionState.none) {
           return const Center(
@@ -33,19 +32,21 @@ class ConsumablegenListScreen extends StatelessWidget {
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
 
-            consumablegen.rarity = responseData['rarity'];
+            enemy.name = responseData['name'];
 
-            consumablegen.name = responseData['name'];
+            enemy.moraGained = responseData['mora gained'];
 
-            consumablegen.type = responseData['type'];
+            enemy.id = responseData['id'];
 
-            consumablegen.effect = responseData['effect'];
+            enemy.description = responseData['description'];
 
-            consumablegen.description = responseData['description'];
+            enemy.region = responseData['region'];
 
-            consumablegen.proficiency = responseData['proficiency'];
+            enemy.elements = responseData['elements'];
 
-            consumablegen.recipe = responseData['recipe'];
+            enemy.type = responseData['type'];
+
+            enemy.family = responseData['family'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,31 +54,35 @@ class ConsumablegenListScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Name of Consumable: ${consumablegen.name}"),
+                Text("Name of Enemy: ${enemy.name}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Rarity: ${consumablegen.rarity}"),
+                Text("Mora Gained: ${enemy.moraGained}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Type: ${consumablegen.type}"),
+                Text("Id: ${enemy.id}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Effect: ${consumablegen.effect}"),
+                Text("Description of Enemy: ${enemy.description}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Description: ${consumablegen.description}"),
+                Text("Region: ${enemy.region}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Proficiency: ${consumablegen.proficiency}"),
+                Text("Type: ${enemy.type}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Recipe: ${consumablegen.recipe}")
+                Text("Family: ${enemy.family}"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text("Elements: ${enemy.elements}"),
               ],
             );
           }

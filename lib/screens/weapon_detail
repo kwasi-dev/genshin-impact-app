@@ -1,21 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/consumablegen.dart';
+import 'package:genshinapp/models/weapon.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class ConsumablegenListScreen extends StatelessWidget {
-  final Consumablegen consumablegen;
-  final Api genshinApi = Api();
+class WeaponListScreen extends StatelessWidget {
+  final Weapon weapon; 
+  final Api genshinApi = Api(); 
 
-  ConsumablegenListScreen({Key? key, required this.consumablegen})
+  WeaponListScreen({Key? key, required this.weapon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: genshinApi.getConsumablegenDetail(consumablegen.name),
+      future: genshinApi.getWeaponDetail(weapon.name),
       builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
         if (snapshot.connectionState == ConnectionState.none) {
           return const Center(
@@ -33,19 +33,23 @@ class ConsumablegenListScreen extends StatelessWidget {
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
 
-            consumablegen.rarity = responseData['rarity'];
+            weapon.name = responseData['name'];
 
-            consumablegen.name = responseData['name'];
+            weapon.type = responseData['type'];
 
-            consumablegen.type = responseData['type'];
+            weapon.rarity = responseData['rarity'];
 
-            consumablegen.effect = responseData['effect'];
+            weapon.baseAttack = responseData['base attack'];
 
-            consumablegen.description = responseData['description'];
+            weapon.subStat = responseData['sub stat'];
 
-            consumablegen.proficiency = responseData['proficiency'];
+            weapon.passiveName = responseData['passive name'];
 
-            consumablegen.recipe = responseData['recipe'];
+            weapon.passiveDesc = responseData['passive dec'];
+
+            weapon.location = responseData['location'];
+
+            weapon.ascensionMaterial = responseData['ascension material'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,31 +57,40 @@ class ConsumablegenListScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Name of Consumable: ${consumablegen.name}"),
+                Text("Name of Weapon: ${weapon.name}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Rarity: ${consumablegen.rarity}"),
+                Text("Type: ${weapon.type}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Type: ${consumablegen.type}"),
+                Text("Rarity: ${weapon.rarity}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Effect: ${consumablegen.effect}"),
+                Text("Base Attack: ${weapon.baseAttack}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Description: ${consumablegen.description}"),
+                Text("Sub Stat: ${weapon.subStat}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Proficiency: ${consumablegen.proficiency}"),
+                Text("Passive Name: ${weapon.passiveName}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Recipe: ${consumablegen.recipe}")
+                Text("Passive Description: ${weapon.passiveDesc}"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text("Location: ${weapon.location}"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text("Ascension Material: ${weapon.ascensionMaterial}"),
+
               ],
             );
           }
