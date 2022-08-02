@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:genshinapp/screens/elementgen_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import '../models/elementgen.dart';
 
 class ElementgenListScreen extends StatelessWidget {
-  ElementgenListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  ElementgenListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -50,8 +53,15 @@ class ElementgenListScreen extends StatelessWidget {
 
                 // SHow the Elementgen information in a list tile
                 return ListTile(
-                  title: Text(
-                      currentElementgen.convertNameToHumanReadableFormat()),
+                  onTap: (){
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(ElementgenDetailScreen(
+                      elementgen: currentElementgen
+                    ));
+                  },
+                  title: Text(currentElementgen.convertNameToHumanReadableFormat()),
                 );
               },
             );
