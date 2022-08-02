@@ -5,11 +5,11 @@ import 'package:genshinapp/models/consumablegen.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class ConsumablegenListScreen extends StatelessWidget {
+class ConsumablegenDetailScreen extends StatelessWidget {
   final Consumablegen consumablegen;
   final Api genshinApi = Api();
 
-  ConsumablegenListScreen({Key? key, required this.consumablegen})
+  ConsumablegenDetailScreen({Key? key, required this.consumablegen})
       : super(key: key);
 
   @override

@@ -8,6 +8,7 @@ class Charactersgen {
   String constellation = "";
   String birthday = "";
   String description = "";
+  //String skillTalentsname = "";
 
   Charactersgen(this.name);
 
