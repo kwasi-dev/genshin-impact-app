@@ -1,3 +1,5 @@
+import 'package:genshinapp/models/skilltalent.dart';
+
 class Charactersgen {
   String name;
   String vision = "";
@@ -9,7 +11,7 @@ class Charactersgen {
   String birthday = "";
   String description = "";
   //String skillTalentsname = "";
-
+  List<SkillTalent> skillTalents = [];
   Charactersgen(this.name);
 
   //The name that is retrieved from the internet has dashes in it.
