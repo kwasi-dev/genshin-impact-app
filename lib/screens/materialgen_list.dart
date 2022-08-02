@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:genshinapp/models/materialgen.dart';
+import 'package:genshinapp/screens/materialgen_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
 class MaterialgenListScreen extends StatelessWidget {
-  MaterialgenListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  MaterialgenListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -50,8 +53,15 @@ class MaterialgenListScreen extends StatelessWidget {
 
                 // SHow the Materialgen information in a list tile
                 return ListTile(
-                  title: Text(
-                      currentMaterialgen.convertNameToHumanReadableFormat()),
+                  onTap: (){
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(MaterialgenDetailScreen(
+                      materialgen: currentMaterialgen
+                    ));
+                  },
+                  title: Text(currentMaterialgen.convertNameToHumanReadableFormat()),
                 );
               },
             );
