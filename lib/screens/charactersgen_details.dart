@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genshinapp/models/charactersgen.dart';
+import 'package:genshinapp/models/skilltalent.dart';
+import 'package:genshinapp/models/upgrade.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -31,7 +33,6 @@ class CharactersgenDetailScreen extends StatelessWidget {
             );
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
-            // Map<String, dynamic> skillTalents = jsonDecode(responseData['skillTalents']);
 
             characters.vision = responseData['vision'];
 
@@ -49,6 +50,26 @@ class CharactersgenDetailScreen extends StatelessWidget {
 
             characters.description = responseData['description'];
 
+            for (var skillTalentFromInternet in responseData['skillTalents']){
+              Map<String, dynamic> skillTalentMapping = skillTalentFromInternet;
+
+              SkillTalent talent = SkillTalent();
+              talent.name = skillTalentMapping['name'];
+              talent.unlock = skillTalentMapping['unlock'];
+              talent.description = skillTalentMapping['description'];
+              talent.type = skillTalentMapping['type'];
+
+              for (var upgradeFromMapping in skillTalentMapping['upgrades']){
+                Map<String, dynamic> upgradeMapping = upgradeFromMapping;
+                Upgrade upgrade = Upgrade();
+                upgrade.name = upgradeMapping['name'];
+                upgrade.value = upgradeMapping['value'];
+
+                talent.upgrades.add(upgrade);
+              }
+
+              characters.skillTalents.add(talent);
+            }
             // characters.skillTalentsname = skillTalents['description'][1];
 
             return Column(
@@ -90,6 +111,20 @@ class CharactersgenDetailScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text("Description: ${characters.description}"),
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                      itemCount: characters.skillTalents.length,
+
+                    itemBuilder: (BuildContext context, int index) {
+                        SkillTalent talent = characters.skillTalents[index];
+                        return ListTile(
+                          title: Text(talent.name),
+                          subtitle: Text(talent.type),
+                        );
+                    },
+                      ),
+                )
                 // const SizedBox(
                 //   height: 20,
                 // ),
