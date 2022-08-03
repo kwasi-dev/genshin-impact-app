@@ -103,4 +103,17 @@ class Api {
     return request;
 
   }
+  Future<Response> getEnemyDetail(String enemyName) async {
+    String enemyDetailUrl = "enemies/$enemyName";
+
+    Response request = await client.get(Uri.https(host, enemyDetailUrl));
+    return request;
+  }
+
+  Future<Response> getNationDetail(String nationName) async {
+    String nationDetailUrl = "enemies/$nationName";
+
+    Response request = await client.get(Uri.https(host, nationDetailUrl));
+    return request;
+  }
 }
