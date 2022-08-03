@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/charactersgen.dart';
-import 'package:genshinapp/models/skilltalent.dart';
-import 'package:genshinapp/models/upgrade.dart';
+import 'package:genshinapp/models/characters/charactersgen.dart';
+import 'package:genshinapp/models/characters/constellation.dart';
+import 'package:genshinapp/models/characters/passivetalent.dart';
+import 'package:genshinapp/models/characters/skilltalent.dart';
+import 'package:genshinapp/models/characters/upgrade.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -45,7 +47,7 @@ class CharactersgenDetailScreen extends StatelessWidget {
 
             characters.rarity = responseData['rarity'];
 
-            characters.constellation = responseData['constellation'];
+            characters.constellationname = responseData['constellation'];
 
             characters.birthday = responseData['birthday'];
 
@@ -61,6 +63,7 @@ class CharactersgenDetailScreen extends StatelessWidget {
               if (skillTalentMapping.keys.contains('type')) {
                 talent.type = skillTalentMapping['type'];
               }
+              characters.skillTalents.add(talent);
 
               if (skillTalentMapping.keys.contains('upgrades')) {
                 for (var upgradeFromMapping in skillTalentMapping['upgrades']) {
@@ -72,8 +75,29 @@ class CharactersgenDetailScreen extends StatelessWidget {
                   talent.upgrades.add(upgrade);
                 }
               }
+            }
 
-              characters.skillTalents.add(talent);
+            for (var passiveTalentFromInternet
+                in responseData['passiveTalents']) {
+              Map<String, dynamic> passiveTalentMapping =
+                  passiveTalentFromInternet;
+              PassiveTalent passive = PassiveTalent();
+              passive.name = passiveTalentMapping['name'];
+              passive.unlock = passiveTalentMapping['unlock'];
+              passive.description = passiveTalentMapping['description'];
+              if (passiveTalentMapping.keys.contains('type')) {
+                passive.level = passiveTalentMapping['level'];
+              }
+            }
+            for (var constellationFromInternet
+                in responseData['constellations']) {
+              Map<String, dynamic> constellationMapping =
+                  constellationFromInternet;
+              Constellation constellation = Constellation();
+              constellation.name = constellationMapping['name'];
+              constellation.unlock = constellationMapping['unlock'];
+              constellation.description = constellationMapping['description'];
+              constellation.level = constellationMapping['level'];
             }
 
             return Column(
@@ -106,7 +130,7 @@ class CharactersgenDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Constellation: ${characters.constellation}"),
+                Text("Constellation: ${characters.constellationname}"),
                 const SizedBox(
                   height: 20,
                 ),
@@ -120,13 +144,36 @@ class CharactersgenDetailScreen extends StatelessWidget {
                     itemCount: characters.skillTalents.length,
                     itemBuilder: (BuildContext context, int index) {
                       SkillTalent talent = characters.skillTalents[index];
-                      return ListTile(
-                        title: Text(talent.name),
-                        subtitle: Text(talent.type),
-                        isThreeLine:true,
-                         
-                      );
-                     
+
+                      return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text("Skill Tallent Name: ${talent.name}"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text("Skill Tallent: ${talent.type}"),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                                "Skill Tallent Description: ${talent.description}"),
+                            ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: talent.upgrades.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                Upgrade upgrade = talent.upgrades[index];
+                                return ListTile(
+                                  title: Text(upgrade.name),
+                                  subtitle: Text(talent.type),
+                                );
+                              },
+                            )
+                          ]);
                     },
                   ),
                 )

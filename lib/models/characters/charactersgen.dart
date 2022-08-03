@@ -1,4 +1,6 @@
-import 'package:genshinapp/models/skilltalent.dart';
+import 'package:genshinapp/models/characters/constellation.dart';
+import 'package:genshinapp/models/characters/passivetalent.dart';
+import 'package:genshinapp/models/characters/skilltalent.dart';
 
 class Charactersgen {
   String name;
@@ -7,11 +9,12 @@ class Charactersgen {
   String nation = "";
   String affiliation = "";
   int rarity = 0;
-  String constellation = "";
+  String constellationname = "";
   String birthday = "";
   String description = "";
-  //String skillTalentsname = "";
   List<SkillTalent> skillTalents = [];
+  List<PassiveTalent> passiveTalent = [];
+  List<Constellation> constellation = [];
   Charactersgen(this.name);
 
   //The name that is retrieved from the internet has dashes in it.

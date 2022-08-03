@@ -1,4 +1,4 @@
-import 'package:genshinapp/models/upgrade.dart';
+import 'package:genshinapp/models/characters/upgrade.dart';
 
 class SkillTalent{
   String name = "";
