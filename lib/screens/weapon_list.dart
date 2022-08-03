@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:genshinapp/screens/weapon_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import '../models/weapon.dart';
 
 class WeaponListScreen extends StatelessWidget {
-  WeaponListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  WeaponListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -50,6 +53,12 @@ class WeaponListScreen extends StatelessWidget {
 
                 // SHow the Weapon information in a list tile
                 return ListTile(
+                  onTap: () {
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(WeaponDetailScreen(weapon: currentWeapon));
+                  },
                   title: Text(currentWeapon.convertNameToHumanReadableFormat()),
                 );
               },
