@@ -96,6 +96,7 @@ class Api {
         await client.get(Uri.https(host, consumablegenDetailUrl));
     return request;
   }
+
   Future<Response> getCharactersgenDetail(String charactersgenName)async{
     String charactersgenDetailUrl = "characters/$charactersgenName";
 
@@ -103,4 +104,29 @@ class Api {
     return request;
 
   }
+
+  Future<Response> getNationDetail(String nationName) async {
+    String nationDetailUrl = "nation/$nationName";
+
+    Response request =
+        await client.get(Uri.https(host, nationDetailUrl));
+    return request;
+  }
+
+  Future<Response> getEnemyDetail(String enemyName) async {
+    String enemyDetailUrl = "enemy/$enemyName";
+
+    Response request =
+        await client.get(Uri.https(host, enemyDetailUrl));
+    return request;
+  }
+
+  Future<Response> getWeaponDetail(String weaponName) async {
+    String weaponDetailUrl = "weapon/$weaponName";
+
+    Response request =
+        await client.get(Uri.https(host, weaponDetailUrl));
+    return request;
+  }
+
 }

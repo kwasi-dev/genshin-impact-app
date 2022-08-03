@@ -1,5 +1,13 @@
 class Enemy{
   String name;
+  int moraGained = 0;
+  String id = "";
+  String description = "";
+  String region = "";
+  String type = "";
+  String family = "";
+  String elements = "";
+
 
   Enemy(this.name);
 

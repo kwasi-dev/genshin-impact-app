@@ -5,11 +5,11 @@ import 'package:genshinapp/models/weapon.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class WeaponListScreen extends StatelessWidget {
+class WeaponDetailScreen extends StatelessWidget {
   final Weapon weapon; 
   final Api genshinApi = Api(); 
 
-  WeaponListScreen({Key? key, required this.weapon})
+  WeaponDetailScreen({Key? key, required this.weapon})
       : super(key: key);
 
   @override

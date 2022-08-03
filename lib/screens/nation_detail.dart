@@ -5,11 +5,11 @@ import 'package:genshinapp/models/nation.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class NationListScreen extends StatelessWidget {
+class NationDetailScreen extends StatelessWidget {
   final Nation nation;
   final Api genshinApi = Api();
 
-  NationListScreen({Key? key, required this.nation}) : super(key: key);
+  NationDetailScreen({Key? key, required this.nation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

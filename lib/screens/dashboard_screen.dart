@@ -53,20 +53,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   ListTile(
                     title: const Text("Characters"),
-                     onTap: () {
-                      updateContent(CharactersgenListScreen(onItemClick: updateContent));
+                    onTap: () {
+                      updateContent(
+                          CharactersgenListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(
                     title: const Text("Consumables"),
                     onTap: () {
-                      updateContent(ConsumablegenListScreen(onItemClick: updateContent));
+                      updateContent(
+                          ConsumablegenListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(
                     title: const Text("Domains"),
                     onTap: () {
-                      updateContent(DomainListScreen(onItemClick: updateContent));
+                      updateContent(
+                          DomainListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(
@@ -78,7 +81,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Enemies"),
                     onTap: () {
-                      updateContent(EnemyListScreen());
+                      updateContent(
+                          EnemyListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(
@@ -90,13 +94,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     title: const Text("Nations"),
                     onTap: () {
-                      updateContent(NationListScreen());
+                      updateContent(
+                          NationListScreen(onItemClick: updateContent));
                     },
                   ),
                   ListTile(
                     title: const Text("Weapons"),
                     onTap: () {
-                      updateContent(WeaponListScreen());
+                      updateContent(
+                          WeaponListScreen(onItemClick: updateContent));
                     },
                   )
                 ],

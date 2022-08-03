@@ -5,11 +5,11 @@ import 'package:genshinapp/models/enemy.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
-class EnemyListScreen extends StatelessWidget {
+class EnemyDetailScreen extends StatelessWidget {
   final Enemy enemy;
   final Api genshinApi = Api();
 
-  EnemyListScreen({Key? key, required this.enemy}) : super(key: key);
+  EnemyDetailScreen({Key? key, required this.enemy}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
