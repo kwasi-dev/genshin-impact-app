@@ -1,12 +1,12 @@
 class Enemy {
   String name;
   int moraGained = 0;
-  int id = 0;
+  String id = "";
   String description = "";
   String region = "";
-  String elements = "";
   String type = "";
   String family = "";
+  String elements = "";
 
   Enemy(this.name);
 

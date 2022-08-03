@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import '../models/enemy.dart';
+import 'package:genshinapp/screens/enemy_detail.dart';
 
 class EnemyListScreen extends StatelessWidget {
-  EnemyListScreen({Key? key}) : super(key: key);
+  void Function(Widget w) onItemClick;
+
+  EnemyListScreen({Key? key, required this.onItemClick}) : super(key: key);
   final Api genshinApi = Api();
 
   @override
@@ -49,6 +52,12 @@ class EnemyListScreen extends StatelessWidget {
 
                 // SHow the Enemy information in a list tile
                 return ListTile(
+                  onTap: () {
+                    // Domain detail screen should take the selected domain
+                    // as a parameter so that it knows what domain it should
+                    // display
+                    onItemClick(EnemyDetailScreen(enemy: currentEnemy));
+                  },
                   title: Text(currentEnemy.convertNameToHumanReadableFormat()),
                 );
               },
