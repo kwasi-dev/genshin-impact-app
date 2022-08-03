@@ -34,6 +34,7 @@ class CharactersgenDetailScreen extends StatelessWidget {
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
 
+            characters.name = responseData['name'];
             characters.vision = responseData['vision'];
 
             characters.weapon = responseData['weapon'];
@@ -57,9 +58,12 @@ class CharactersgenDetailScreen extends StatelessWidget {
               talent.name = skillTalentMapping['name'];
               talent.unlock = skillTalentMapping['unlock'];
               talent.description = skillTalentMapping['description'];
-              talent.type = skillTalentMapping['type'];
+              if (skillTalentMapping.keys.contains('type')){
+                talent.type = skillTalentMapping['type'];
+              }
 
-              for (var upgradeFromMapping in skillTalentMapping['upgrades']){
+              if (skillTalentMapping.keys.contains('upgrades')) {
+                for (var upgradeFromMapping in skillTalentMapping['upgrades']){
                 Map<String, dynamic> upgradeMapping = upgradeFromMapping;
                 Upgrade upgrade = Upgrade();
                 upgrade.name = upgradeMapping['name'];
@@ -67,10 +71,10 @@ class CharactersgenDetailScreen extends StatelessWidget {
 
                 talent.upgrades.add(upgrade);
               }
+            }
 
               characters.skillTalents.add(talent);
             }
-            // characters.skillTalentsname = skillTalents['description'][1];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,10 +129,6 @@ class CharactersgenDetailScreen extends StatelessWidget {
                     },
                       ),
                 )
-                // const SizedBox(
-                //   height: 20,
-                // ),
-                // Text("skillDescription: ${characters.skillTalentsname}"),
               ],
             );
           }
