@@ -38,7 +38,7 @@ class NationDetailScreen extends StatelessWidget {
 
             nation.archon = responseData['archon'];
 
-            nation.controllingEntity = responseData['controlling entity'];
+            nation.controllingEntity = responseData['controllingEntity'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

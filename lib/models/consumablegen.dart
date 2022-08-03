@@ -4,7 +4,7 @@ class Consumablegen {
   String type = "";
   String effect = "";
   String description = "";
-  String proficiency = "";
+  int proficiency = 0;
   String recipe = "";
 
   Consumablegen(this.name);

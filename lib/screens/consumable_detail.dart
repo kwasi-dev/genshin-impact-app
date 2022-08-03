@@ -32,54 +32,100 @@ class ConsumablegenDetailScreen extends StatelessWidget {
             );
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
+            List<Consumablegen> consumables = [];
+            List<String> allFoodKeys = responseData.keys.toList();
+            for (String foodKey in allFoodKeys){
+              Consumablegen consumable = Consumablegen(foodKey);
 
-            consumablegen.rarity = responseData['rarity'];
+              consumable.rarity = responseData[foodKey]['rarity'];
 
-            consumablegen.name = responseData['name'];
+              consumable.name = responseData[foodKey]['name'];
 
-            consumablegen.type = responseData['type'];
+              consumable.type = responseData[foodKey]['type'];
 
-            consumablegen.effect = responseData['effect'];
+              consumable.effect = responseData[foodKey]['effect'];
 
-            consumablegen.description = responseData['description'];
+              consumable.description = responseData[foodKey]['description'];
 
-            consumablegen.proficiency = responseData['proficiency'];
+              consumables.add(consumable);
+            }
+            return ListView.builder(itemCount: consumables.length,
+              itemBuilder: (BuildContext context, int index) {
+                Consumablegen consumablegen = consumables[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Name of Consumable: ${consumablegen.name}", style: TextStyle(fontWeight: FontWeight.bold),),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Rarity: ${consumablegen.rarity}"),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Type: ${consumablegen.type}"),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Effect: ${consumablegen.effect}"),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Description: ${consumablegen.description}"),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Proficiency: ${consumablegen.proficiency}"),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text("Recipe: ${consumablegen.recipe}")
+                  ],
+                );
 
-            consumablegen.recipe = responseData['recipe'];
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Name of Consumable: ${consumablegen.name}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Rarity: ${consumablegen.rarity}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Type: ${consumablegen.type}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Effect: ${consumablegen.effect}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Description: ${consumablegen.description}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Proficiency: ${consumablegen.proficiency}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Recipe: ${consumablegen.recipe}")
-              ],
+                // return ListTile(
+                //   title: Text(consumable.name),
+                //   subtitle: Text(consumable.description),
+                // );
+              },
             );
+
+            // return Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Name of Consumable: ${consumablegen.name}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Rarity: ${consumablegen.rarity}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Type: ${consumablegen.type}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Effect: ${consumablegen.effect}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Description: ${consumablegen.description}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Proficiency: ${consumablegen.proficiency}"),
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     Text("Recipe: ${consumablegen.recipe}")
+            //   ],
+            // );
           }
         }
       },

@@ -106,7 +106,7 @@ class Api {
   }
 
   Future<Response> getNationDetail(String nationName) async {
-    String nationDetailUrl = "nation/$nationName";
+    String nationDetailUrl = "nations/$nationName";
 
     Response request = await client.get(Uri.https(host, nationDetailUrl));
     return request;
