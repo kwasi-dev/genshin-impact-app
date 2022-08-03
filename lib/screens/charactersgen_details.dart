@@ -51,27 +51,27 @@ class CharactersgenDetailScreen extends StatelessWidget {
 
             characters.description = responseData['description'];
 
-            for (var skillTalentFromInternet in responseData['skillTalents']){
+            for (var skillTalentFromInternet in responseData['skillTalents']) {
               Map<String, dynamic> skillTalentMapping = skillTalentFromInternet;
 
               SkillTalent talent = SkillTalent();
               talent.name = skillTalentMapping['name'];
               talent.unlock = skillTalentMapping['unlock'];
               talent.description = skillTalentMapping['description'];
-              if (skillTalentMapping.keys.contains('type')){
+              if (skillTalentMapping.keys.contains('type')) {
                 talent.type = skillTalentMapping['type'];
               }
 
               if (skillTalentMapping.keys.contains('upgrades')) {
-                for (var upgradeFromMapping in skillTalentMapping['upgrades']){
-                Map<String, dynamic> upgradeMapping = upgradeFromMapping;
-                Upgrade upgrade = Upgrade();
-                upgrade.name = upgradeMapping['name'];
-                upgrade.value = upgradeMapping['value'];
+                for (var upgradeFromMapping in skillTalentMapping['upgrades']) {
+                  Map<String, dynamic> upgradeMapping = upgradeFromMapping;
+                  Upgrade upgrade = Upgrade();
+                  upgrade.name = upgradeMapping['name'];
+                  upgrade.value = upgradeMapping['value'];
 
-                talent.upgrades.add(upgrade);
+                  talent.upgrades.add(upgrade);
+                }
               }
-            }
 
               characters.skillTalents.add(talent);
             }
@@ -118,16 +118,18 @@ class CharactersgenDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 200,
                   child: ListView.builder(
-                      itemCount: characters.skillTalents.length,
-
+                    itemCount: characters.skillTalents.length,
                     itemBuilder: (BuildContext context, int index) {
-                        SkillTalent talent = characters.skillTalents[index];
-                        return ListTile(
-                          title: Text(talent.name),
-                          subtitle: Text(talent.type),
-                        );
+                      SkillTalent talent = characters.skillTalents[index];
+                      return ListTile(
+                        title: Text(talent.name),
+                        subtitle: Text(talent.type),
+                        isThreeLine:true,
+                         
+                      );
+                     
                     },
-                      ),
+                  ),
                 )
               ],
             );
