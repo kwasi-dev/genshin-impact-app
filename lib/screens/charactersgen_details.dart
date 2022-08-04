@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/charactersgen.dart';
-import 'package:genshinapp/models/skilltalent.dart';
-import 'package:genshinapp/models/upgrade.dart';
+import 'package:genshinapp/models/characters/charactersgen.dart';
+import 'package:genshinapp/models/characters/skilltalent.dart';
+import 'package:genshinapp/models/characters/upgrade.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
