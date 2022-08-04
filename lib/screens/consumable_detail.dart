@@ -33,19 +33,28 @@ class ConsumablegenDetailScreen extends StatelessWidget {
           } else {
             Map<String, dynamic> responseData = jsonDecode(snapshot.data!.body);
 
-            consumablegen.rarity = responseData['rarity'];
+            List<String> foods = responseData.keys.toList();
+            List<Consumablegen> consumables = [];
 
-            consumablegen.name = responseData['name'];
+            for (var food in foods) {
+              Consumablegen consumablegen = Consumablegen(food);
 
-            consumablegen.type = responseData['type'];
+              consumablegen.rarity = responseData[food]['rarity'];
 
-            consumablegen.effect = responseData['effect'];
+              consumablegen.name = responseData[food]['name'];
 
-            consumablegen.description = responseData['description'];
+              consumablegen.type = responseData[food]['type'];
 
-            consumablegen.proficiency = responseData['proficiency'];
+              consumablegen.effect = responseData[food]['effect'];
 
-            consumablegen.recipe = responseData['recipe'];
+              consumablegen.description = responseData[food]['description'];
+
+              consumablegen.proficiency = responseData[food]['proficiency'];
+
+              consumables.add(consumablegen);
+            }
+
+            //consumablegen.recipe = responseData['recipe'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +66,7 @@ class ConsumablegenDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Rarity: ${consumablegen.rarity}"),
+                //Text("Rarity: ${consumablegen.rarity}"),
                 const SizedBox(
                   height: 20,
                 ),
@@ -73,11 +82,11 @@ class ConsumablegenDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Proficiency: ${consumablegen.proficiency}"),
+                //Text("Proficiency: ${consumablegen.proficiency}"),
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Recipe: ${consumablegen.recipe}")
+                //Text("Recipe: ${consumablegen.recipe}")
               ],
             );
           }
