@@ -6,11 +6,10 @@ import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
 class WeaponDetailScreen extends StatelessWidget {
-  final Weapon weapon; 
-  final Api genshinApi = Api(); 
+  final Weapon weapon;
+  final Api genshinApi = Api();
 
-  WeaponDetailScreen({Key? key, required this.weapon})
-      : super(key: key);
+  WeaponDetailScreen({Key? key, required this.weapon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +38,17 @@ class WeaponDetailScreen extends StatelessWidget {
 
             weapon.rarity = responseData['rarity'];
 
-            weapon.baseAttack = responseData['base attack'];
+            weapon.baseAttack = responseData['baseAttack'];
 
-            weapon.subStat = responseData['sub stat'];
+            weapon.subStat = responseData['subStat'];
 
-            weapon.passiveName = responseData['passive name'];
+            weapon.passiveName = responseData['passiveName'];
 
-            weapon.passiveDesc = responseData['passive dec'];
+            weapon.passiveDesc = responseData['passiveDesc'];
 
             weapon.location = responseData['location'];
 
-            weapon.ascensionMaterial = responseData['ascension material'];
+            weapon.ascensionMaterial = responseData['ascensionMaterial'];
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +89,6 @@ class WeaponDetailScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text("Ascension Material: ${weapon.ascensionMaterial}"),
-
               ],
             );
           }

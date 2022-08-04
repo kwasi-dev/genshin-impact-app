@@ -120,7 +120,7 @@ class Api {
   }
 
   Future<Response> getWeaponDetail(String weaponName) async {
-    String weaponDetailUrl = "weapon/$weaponName";
+    String weaponDetailUrl = "weapons/$weaponName";
 
     Response request = await client.get(Uri.https(host, weaponDetailUrl));
     return request;
