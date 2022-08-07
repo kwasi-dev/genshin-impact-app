@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
-import '../models/enemy.dart';
+import '../models/enemies/enemy.dart';
 import 'package:genshinapp/screens/enemy_detail.dart';
 
 class EnemyListScreen extends StatelessWidget {

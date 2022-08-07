@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:genshinapp/models/enemy.dart';
+import 'package:genshinapp/models/enemies/enemy.dart';
+import 'package:genshinapp/models/enemies/drops.dart';
+import 'package:genshinapp/models/enemies/elements.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
 
@@ -34,7 +36,24 @@ class EnemyDetailScreen extends StatelessWidget {
 
             enemy.name = responseData['name'];
 
-            enemy.moraGained = responseData['mora gained'];
+            if (responseData.keys.contains('mora-gained')) {
+              enemy.moraGained = responseData['mora-gained'];
+            }
+
+            if (responseData.keys.contains('drops')) {
+              enemy.drops = responseData['drops'];
+
+              for (var dropsFromInternet in responseData['drops']) {
+                Map<String, dynamic> dropsMapping = dropsFromInternet;
+
+                Drops drops = Drops();
+                drops.name = dropsMapping['name'];
+                drops.rarity = dropsMapping['rarity'];
+                drops.minimumLevel = dropsMapping['minimum-level'];
+
+                enemy.drops.add(drops);
+              }
+            }
 
             enemy.id = responseData['id'];
 
@@ -42,7 +61,41 @@ class EnemyDetailScreen extends StatelessWidget {
 
             enemy.region = responseData['region'];
 
-            enemy.elements = responseData['elements'];
+            for (var elementsFromInternet in responseData['elements']) {
+              Map<String, dynamic> elementsMapping = elementsFromInternet;
+
+              Elements elements = Elements();
+
+              if (responseData.keys.contains('pyro')) {
+                enemy.elements = responseData['pyro'];
+              }
+
+              if (responseData.keys.contains('cryo')) {
+                enemy.elements = responseData['cryo'];
+              }
+
+              if (responseData.keys.contains('anemo')) {
+                enemy.elements = responseData['anemo'];
+              }
+
+              if (responseData.keys.contains('dendro')) {
+                enemy.elements = responseData['dendro'];
+              }
+
+              if (responseData.keys.contains('hydro')) {
+                enemy.elements = responseData['hydro'];
+              }
+
+              if (responseData.keys.contains('geo')) {
+                enemy.elements = responseData['geo'];
+              }
+
+              if (responseData.keys.contains('electro')) {
+                enemy.elements = responseData['electro'];
+
+                enemy.elements.add(elements);
+              }
+            }
 
             enemy.type = responseData['type'];
 
@@ -83,6 +136,10 @@ class EnemyDetailScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text("Elements: ${enemy.elements}"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text("Drops: ${enemy.drops}"),
               ],
             );
           }

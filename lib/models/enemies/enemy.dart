@@ -1,3 +1,6 @@
+import 'drops.dart';
+import 'elements.dart';
+
 class Enemy {
   String name;
   int moraGained = 0;
@@ -6,7 +9,8 @@ class Enemy {
   String region = "";
   String type = "";
   String family = "";
-  String elements = "";
+  List<Elements> elements = [];
+  List<Drops> drops = [];
 
   Enemy(this.name);
 
