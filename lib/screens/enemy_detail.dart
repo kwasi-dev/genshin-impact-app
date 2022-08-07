@@ -40,19 +40,21 @@ class EnemyDetailScreen extends StatelessWidget {
               enemy.moraGained = responseData['mora-gained'];
             }
 
-            if (responseData.keys.contains('drops')) {
-              enemy.drops = responseData['drops'];
+            for (var dropsFromInternet in responseData['drops']) {
+              Map<String, dynamic> dropsMapping = dropsFromInternet;
 
-              for (var dropsFromInternet in responseData['drops']) {
-                Map<String, dynamic> dropsMapping = dropsFromInternet;
-
-                Drops drops = Drops();
+              Drops drops = Drops();
+              if (responseData.keys.contains('name')) {
                 drops.name = dropsMapping['name'];
-                drops.rarity = dropsMapping['rarity'];
-                drops.minimumLevel = dropsMapping['minimum-level'];
-
-                enemy.drops.add(drops);
               }
+              if (responseData.keys.contains('rarity')) {
+                drops.rarity = dropsMapping['rarity'];
+              }
+              if (responseData.keys.contains('minimum-level')) {
+                drops.minimumLevel = dropsMapping['minimum-level'];
+              }
+
+              enemy.drops.add(drops);
             }
 
             enemy.id = responseData['id'];
@@ -67,31 +69,31 @@ class EnemyDetailScreen extends StatelessWidget {
               Elements elements = Elements();
 
               if (responseData.keys.contains('pyro')) {
-                enemy.elements = responseData['pyro'];
+                enemy.elements = elementsMapping['pyro'];
               }
 
               if (responseData.keys.contains('cryo')) {
-                enemy.elements = responseData['cryo'];
+                enemy.elements = elementsMapping['cryo'];
               }
 
               if (responseData.keys.contains('anemo')) {
-                enemy.elements = responseData['anemo'];
+                enemy.elements = elementsMapping['anemo'];
               }
 
               if (responseData.keys.contains('dendro')) {
-                enemy.elements = responseData['dendro'];
+                enemy.elements = elementsMapping['dendro'];
               }
 
               if (responseData.keys.contains('hydro')) {
-                enemy.elements = responseData['hydro'];
+                enemy.elements = elementsMapping['hydro'];
               }
 
               if (responseData.keys.contains('geo')) {
-                enemy.elements = responseData['geo'];
+                enemy.elements = elementsMapping['geo'];
               }
 
               if (responseData.keys.contains('electro')) {
-                enemy.elements = responseData['electro'];
+                enemy.elements = elementsMapping['electro'];
 
                 enemy.elements.add(elements);
               }
