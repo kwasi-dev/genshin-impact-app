@@ -54,6 +54,21 @@ class ConsumablegenDetailScreen extends StatelessWidget {
               consumables.add(consumablegen);
             }
 
+            List<String> potions = responseData.keys.toList();
+            List<Consumablegen> consumable = [];
+
+            for (var potions in potions) {
+              Consumablegen consumablegen = Consumablegen(potions);
+
+              consumablegen.rarity = responseData[potions]['rarity'];
+
+              consumablegen.name = responseData[potions]['name'];
+
+              consumablegen.effect = responseData[potions]['effect'];
+
+              consumables.add(consumablegen);
+            }
+
             //consumablegen.recipe = responseData['recipe'];
 
             return Column(
