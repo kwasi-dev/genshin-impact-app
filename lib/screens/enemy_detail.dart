@@ -64,7 +64,7 @@ class EnemyDetailScreen extends StatelessWidget {
             for (var elementsFromInternet in responseData['elements']) {
               Map<String, dynamic> elementsMapping = elementsFromInternet;
 
-              Elements elements = Elements();
+              Elements elemental_description = Elements();
 
               if (responseData.keys.contains('pyro')) {
                 enemy.elements = responseData['pyro'];
@@ -93,7 +93,7 @@ class EnemyDetailScreen extends StatelessWidget {
               if (responseData.keys.contains('electro')) {
                 enemy.elements = responseData['electro'];
 
-                enemy.elements.add(elements);
+                enemy.elements.add(elemental_description);
               }
             }
 
