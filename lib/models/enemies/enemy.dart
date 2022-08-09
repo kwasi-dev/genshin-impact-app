@@ -9,9 +9,8 @@ class Enemy {
   String region = "";
   String type = "";
   String family = "";
-  List<Elements> elements = [];
+  List<String> elements = [];
   List<Drops> drops = [];
-
   Enemy(this.name);
 
   //The name that is retrieved from the internet has dashes in it.

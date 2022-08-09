@@ -40,21 +40,24 @@ class EnemyDetailScreen extends StatelessWidget {
               enemy.moraGained = responseData['mora-gained'];
             }
 
-            for (var dropsFromInternet in responseData['drops']) {
-              Map<String, dynamic> dropsMapping = dropsFromInternet;
+            //Check for drops before iterating
+            if (responseData.keys.contains('drops')) {
+              for (var dropsFromInternet in responseData['drops']) {
+                Map<String, dynamic> dropsMapping = dropsFromInternet;
 
-              Drops drops = Drops();
-              if (responseData.keys.contains('name')) {
-                drops.name = dropsMapping['name'];
-              }
-              if (responseData.keys.contains('rarity')) {
-                drops.rarity = dropsMapping['rarity'];
-              }
-              if (responseData.keys.contains('minimum-level')) {
-                drops.minimumLevel = dropsMapping['minimum-level'];
-              }
+                Drops drops = Drops();
+                if (responseData.keys.contains('name')) {
+                  drops.name = dropsMapping['name'];
+                }
+                if (responseData.keys.contains('rarity')) {
+                  drops.rarity = dropsMapping['rarity'];
+                }
+                if (responseData.keys.contains('minimum-level')) {
+                  drops.minimumLevel = dropsMapping['minimum-level'];
+                }
 
-              enemy.drops.add(drops);
+                enemy.drops.add(drops);
+              }
             }
 
             enemy.id = responseData['id'];
@@ -63,41 +66,22 @@ class EnemyDetailScreen extends StatelessWidget {
 
             enemy.region = responseData['region'];
 
-            for (var elementsFromInternet in responseData['elements']) {
-              Map<String, dynamic> elementsMapping = elementsFromInternet;
+            //Ternary operator / operation
+            List<dynamic> elementsFromInternetList = responseData.keys
+                    .contains('elements') //if responsedata keys has 'elements'
+                ? responseData[
+                    'elements'] // take the value in responseData['elements']
+                : responseData.keys.contains(
+                        'element') //else if response data keys has 'element'
+                    ? responseData[
+                        'element'] // take the value in responsedata['element']
+                    : []; //else assign our variable to an empty list
 
-              Elements elemental_description = Elements();
-
-              if (responseData.keys.contains('pyro')) {
-                enemy.elements = elementsMapping['pyro'];
-              }
-
-              if (responseData.keys.contains('cryo')) {
-                enemy.elements = elementsMapping['cryo'];
-              }
-
-              if (responseData.keys.contains('anemo')) {
-                enemy.elements = elementsMapping['anemo'];
-              }
-
-              if (responseData.keys.contains('dendro')) {
-                enemy.elements = elementsMapping['dendro'];
-              }
-
-              if (responseData.keys.contains('hydro')) {
-                enemy.elements = elementsMapping['hydro'];
-              }
-
-              if (responseData.keys.contains('geo')) {
-                enemy.elements = elementsMapping['geo'];
-              }
-
-              if (responseData.keys.contains('electro')) {
-                enemy.elements = elementsMapping['electro'];
-
-                enemy.elements.add(elemental_description);
-              }
+            for (var element in elementsFromInternetList) {
+              enemy.elements.add(element);
             }
+
+            // enemy.elements = elementsFromInternetList;
 
             enemy.type = responseData['type'];
 
@@ -141,7 +125,38 @@ class EnemyDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text("Drops: ${enemy.drops}"),
+                // Text("Drops: ${enemy.drops}"),
+                //Display drops
+                ListView.builder(
+                    itemCount: enemy.drops.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      Drops currentItem = enemy.drops[index];
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "name: ${currentItem.name}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "rarity: ${currentItem.rarity}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "minimumLevel: ${currentItem.minimumLevel}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ],
+                      );
+                    })
               ],
             );
           }
