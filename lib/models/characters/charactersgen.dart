@@ -4,6 +4,7 @@ import 'package:genshinapp/models/characters/skilltalent.dart';
 
 class Charactersgen {
   String name;
+  String char_name = "";
   String vision = "";
   String weapon = "";
   String nation = "";
