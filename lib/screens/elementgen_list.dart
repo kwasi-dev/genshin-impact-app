@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:genshinapp/screens/elementgen_detail.dart';
 import 'package:genshinapp/utilities/api.dart';
 import 'package:http/http.dart';
-import '../models/elementgen.dart';
+import '../models/element/elementgen.dart';
 
 class ElementgenListScreen extends StatelessWidget {
   void Function(Widget w) onItemClick;
