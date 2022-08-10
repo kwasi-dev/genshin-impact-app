@@ -125,4 +125,11 @@ class Api {
     Response request = await client.get(Uri.https(host, weaponDetailUrl));
     return request;
   }
+  Future<Response> getElementgenDetail(String elementName) async {
+    String elementDetailUrl = "elements/$elementName";
+
+    Response request = await client.get(Uri.https(host, elementDetailUrl));
+    return request;
+  }
+
 }
