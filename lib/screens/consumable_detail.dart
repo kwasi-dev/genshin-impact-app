@@ -49,7 +49,7 @@ class ConsumablegenDetailScreen extends StatelessWidget {
 
               consumablegen.description = responseData[food]['description'];
 
-              consumablegen.proficiency = responseData[food]['proficiency'];
+              //consumablegen.proficiency = responseData[food]['proficiency'];
 
               consumables.add(consumablegen);
             }
@@ -69,41 +69,71 @@ class ConsumablegenDetailScreen extends StatelessWidget {
               consumables.add(consumablegen);
             }
 
+            return ListView.builder(
+                itemCount: consumables.length,
+                itemBuilder: (context, index) {
+                  Consumablegen potions = consumable[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Name of Potion: ${potions.name}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Rarity: ${potions.rarity}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Effect: ${potions.effect}"),
+                    ],
+                  );
+                });
+
             //consumablegen.recipe = responseData['recipe'];
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Name of Consumable: ${consumablegen.name}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                //Text("Rarity: ${consumablegen.rarity}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Type: ${consumablegen.type}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Effect: ${consumablegen.effect}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Description: ${consumablegen.description}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                //Text("Proficiency: ${consumablegen.proficiency}"),
-                const SizedBox(
-                  height: 20,
-                ),
-                //Text("Recipe: ${consumablegen.recipe}")
-              ],
-            );
+            return ListView.builder(
+                itemCount: consumables.length,
+                itemBuilder: (context, index) {
+                  Consumablegen food = consumables[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Name of Consumable: ${food.name}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      //Text("Rarity: ${consumablegen.rarity}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Type: ${food.type}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Effect: ${food.effect}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Description: ${food.description}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text("Rarity: ${food.rarity}"),
+                      const SizedBox(height: 20),
+                      //Text("Proficiency: ${consumablegen.proficiency}"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      //Text("Recipe: ${consumablegen.recipe}")
+                    ],
+                  );
+                });
           }
         }
       },
